@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>部位バランスチェッカー | 筋トレ記録</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker">MUSCLE BALANCE</p>
+    <h1>部位バランスチェッカー</h1>
+    <p class="lead">筋トレ記録のJSONを読み込むと、どの部位をどれだけ鍛えたかが一目で分かります。偏りの発見と、次回の目安づくりにどうぞ。データはこの端末の中だけで処理されます。</p>
+    <div class="actions">
+      <label class="btn primary" for="fileInput">記録JSONを読み込む</label>
+      <input type="file" id="fileInput" accept=".json,application/json" hidden>
+      <button class="btn ghost" id="sampleBtn" type="button">サンプル記録で見る</button>
+    </div>
+    <p class="hint" id="dataInfo">サンプル記録を表示中</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="cards" id="summaryCards"></section>
+
+  <section class="panel">
+    <h2>部位ごとのセット数</h2>
+    <p class="note">全期間のセット数を部位別に集計しています。一番少ない部位が、次の伸びしろです。</p>
+    <div id="balanceChart"></div>
+    <p class="insight" id="balanceInsight"></p>
+  </section>
+
+  <section class="panel">
+    <h2>種目別の現在地と次回の目安</h2>
+    <p class="note">目安の考え方: 前回のベストセットで10回以上できていれば少しだけ重量アップ、6〜9回なら同じ重量で回数を伸ばす、5回以下なら同じ重量でフォーム優先。無理のない範囲で調整してください。</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>種目</th><th>部位</th><th>直近の記録</th><th>最大重量</th><th>次回の目安</th></tr>
+        </thead>
+        <tbody id="exerciseRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel" id="untrainedPanel">
+    <h2>登録だけあって、まだ記録のない種目</h2>
+    <p class="note">記録アプリに登録はあるのに、まだ1セットも記録されていない種目です。次に足すならここからが自然です。</p>
+    <div class="chips" id="untrainedChips"></div>
+  </section>
+
+  <section class="panel">
+    <h2>直近のトレーニング日</h2>
+    <div id="recentDays"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>部位バランスチェッカー — 記録は読み取り専用で、外部に送信されません。</p>
+</footer>
+
+<script src="sample-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
